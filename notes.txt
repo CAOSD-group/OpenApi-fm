@@ -1,0 +1,9 @@
+
+
+
+
+
+
+Comandos:
+ctrl + shift + v
+flamapy satisfiable variability_model/fm_OpenAPI3_0_1_v2.uvl

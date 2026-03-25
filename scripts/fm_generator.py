@@ -3,7 +3,7 @@ import os
 
 def sanitize(name):
     if not name: return "Unknown"
-    return str(name).replace("-", "_").replace(".", "_").replace("/", "_").replace(" ", "_").replace("{", "").replace("}", "")
+    return str(name).replace("-", "_").replace(".", "_").replace("/", "_").replace(" ", "_").replace("{", "").replace("}", "").replace("$", "")
 
 def clean_description(description: str) -> str:
     if not description: return ""
