@@ -1,0 +1,1456 @@
+{
+    "OpenAPI_Document": true,
+    "openapi": "3.0.4",
+    "info": {
+        "info_title": "Swagger Petstore - OpenAPI 3.0",
+        "info_description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
+        "info_termsOfService": "https://swagger.io/terms/",
+        "info_contact": {
+            "info_contact_email": "apiteam@swagger.io"
+        },
+        "info_license": {
+            "info_license_name": "Apache 2.0",
+            "info_license_url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "info_version": "1.0.27"
+    },
+    "externalDocs": {
+        "externalDocs_description": "Find out more about Swagger",
+        "externalDocs_url": "https://swagger.io"
+    },
+    "servers": [
+        {
+            "servers_Server": {
+                "servers_Server_url": "https://petstore3.swagger.io/api/v3"
+            }
+        }
+    ],
+    "tags": [
+        {
+            "tags_Tag": {
+                "tags_Tag_name": "pet",
+                "tags_Tag_description": "Everything about your Pets",
+                "tags_Tag_externalDocs": {
+                    "tags_Tag_externalDocs_description": "Find out more",
+                    "tags_Tag_externalDocs_url": "https://swagger.io"
+                }
+            }
+        },
+        {
+            "tags_Tag": {
+                "tags_Tag_name": "store",
+                "tags_Tag_description": "Access to Petstore orders",
+                "tags_Tag_externalDocs": {
+                    "tags_Tag_externalDocs_description": "Find out more about our store",
+                    "tags_Tag_externalDocs_url": "https://swagger.io"
+                }
+            }
+        },
+        {
+            "tags_Tag": {
+                "tags_Tag_name": "user",
+                "tags_Tag_description": "Operations about user"
+            }
+        }
+    ],
+    "paths": {
+        "paths_PathItem": [
+            {
+                "paths_PathItem_KeyValue": "/pet",
+                "paths_PathItem_put": {
+                    "paths_PathItem_put_tags": [
+                        {
+                            "paths_PathItem_put_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_put_summary": "Update an existing pet.",
+                    "paths_PathItem_put_description": "Update an existing pet by Id.",
+                    "paths_PathItem_put_operationId": "updatePet",
+                    "paths_PathItem_put_requestBody": {
+                        "paths_PathItem_put_requestBody_description": "Update an existent pet in the store",
+                        "paths_PathItem_put_requestBody_content": {
+                            "paths_PathItem_put_requestBody_content_application_json": {
+                                "paths_PathItem_put_requestBody_content_application_json_schema": {
+                                    "paths_PathItem_put_requestBody_content_application_json_schema_ref": "#/components/schemas/Pet"
+                                }
+                            },
+                            "paths_PathItem_put_requestBody_content_application_xml": {
+                                "paths_PathItem_put_requestBody_content_application_xml_schema": {
+                                    "paths_PathItem_put_requestBody_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                                }
+                            },
+                            "paths_PathItem_put_requestBody_content_application_x_www_form_urlencoded": {
+                                "paths_PathItem_put_requestBody_content_application_x_www_form_urlencoded_schema": {
+                                    "paths_PathItem_put_requestBody_content_application_x_www_form_urlencoded_schema_ref": "#/components/schemas/Pet"
+                                }
+                            }
+                        },
+                        "paths_PathItem_put_requestBody_required": true
+                    },
+                    "paths_PathItem_put_responses": {
+                        "paths_PathItem_put_responses_200": {
+                            "paths_PathItem_put_responses_200_description": "Successful operation",
+                            "paths_PathItem_put_responses_200_content": {
+                                "paths_PathItem_put_responses_200_content_application_json": {
+                                    "paths_PathItem_put_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_put_responses_200_content_application_json_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                },
+                                "paths_PathItem_put_responses_200_content_application_xml": {
+                                    "paths_PathItem_put_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_put_responses_200_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_put_responses_400": {
+                            "paths_PathItem_put_responses_400_description": "Invalid ID supplied"
+                        },
+                        "paths_PathItem_put_responses_404": {
+                            "paths_PathItem_put_responses_404_description": "Pet not found"
+                        },
+                        "paths_PathItem_put_responses_422": {
+                            "paths_PathItem_put_responses_422_description": "Validation exception"
+                        },
+                        "paths_PathItem_put_responses_default": {
+                            "paths_PathItem_put_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_put_security": [
+                        {
+                            "paths_PathItem_put_security_Item": {
+                                "paths_PathItem_put_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_put_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_put_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "paths_PathItem_post": {
+                    "paths_PathItem_post_tags": [
+                        {
+                            "paths_PathItem_post_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_post_summary": "Add a new pet to the store.",
+                    "paths_PathItem_post_description": "Add a new pet to the store.",
+                    "paths_PathItem_post_operationId": "addPet",
+                    "paths_PathItem_post_requestBody": {
+                        "paths_PathItem_post_requestBody_description": "Create a new pet in the store",
+                        "paths_PathItem_post_requestBody_content": {
+                            "paths_PathItem_post_requestBody_content_application_json": {
+                                "paths_PathItem_post_requestBody_content_application_json_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_json_schema_ref": "#/components/schemas/Pet"
+                                }
+                            },
+                            "paths_PathItem_post_requestBody_content_application_xml": {
+                                "paths_PathItem_post_requestBody_content_application_xml_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                                }
+                            },
+                            "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded": {
+                                "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded_schema_ref": "#/components/schemas/Pet"
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_requestBody_required": true
+                    },
+                    "paths_PathItem_post_responses": {
+                        "paths_PathItem_post_responses_200": {
+                            "paths_PathItem_post_responses_200_description": "Successful operation",
+                            "paths_PathItem_post_responses_200_content": {
+                                "paths_PathItem_post_responses_200_content_application_json": {
+                                    "paths_PathItem_post_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_json_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                },
+                                "paths_PathItem_post_responses_200_content_application_xml": {
+                                    "paths_PathItem_post_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_responses_400": {
+                            "paths_PathItem_post_responses_400_description": "Invalid input"
+                        },
+                        "paths_PathItem_post_responses_422": {
+                            "paths_PathItem_post_responses_422_description": "Validation exception"
+                        },
+                        "paths_PathItem_post_responses_default": {
+                            "paths_PathItem_post_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_post_security": [
+                        {
+                            "paths_PathItem_post_security_Item": {
+                                "paths_PathItem_post_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_post_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_post_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/pet/findByStatus",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Finds Pets by status.",
+                    "paths_PathItem_get_description": "Multiple status values can be provided with comma separated strings.",
+                    "paths_PathItem_get_operationId": "findPetsByStatus",
+                    "paths_PathItem_get_parameters": [
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "status",
+                                "paths_PathItem_get_parameters_Parameter_in": "query",
+                                "paths_PathItem_get_parameters_Parameter_description": "Status values that need to be considered for filter",
+                                "paths_PathItem_get_parameters_Parameter_required": true,
+                                "paths_PathItem_get_parameters_Parameter_explode": true,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "string",
+                                    "paths_PathItem_get_parameters_Parameter_schema_default": "available",
+                                    "paths_PathItem_get_parameters_Parameter_schema_enum": [
+                                        {
+                                            "paths_PathItem_get_parameters_Parameter_schema_enum_StringValue": "available"
+                                        },
+                                        {
+                                            "paths_PathItem_get_parameters_Parameter_schema_enum_StringValue": "pending"
+                                        },
+                                        {
+                                            "paths_PathItem_get_parameters_Parameter_schema_enum_StringValue": "sold"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_type": "array",
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_items": {
+                                            "paths_PathItem_get_responses_200_content_application_json_schema_items_ref": "#/components/schemas/Pet"
+                                        }
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_content_application_xml": {
+                                    "paths_PathItem_get_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_type": "array",
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_items": {
+                                            "paths_PathItem_get_responses_200_content_application_xml_schema_items_ref": "#/components/schemas/Pet"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_400": {
+                            "paths_PathItem_get_responses_400_description": "Invalid status value"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_get_security": [
+                        {
+                            "paths_PathItem_get_security_Item": {
+                                "paths_PathItem_get_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_get_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_get_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/pet/findByTags",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Finds Pets by tags.",
+                    "paths_PathItem_get_description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                    "paths_PathItem_get_operationId": "findPetsByTags",
+                    "paths_PathItem_get_parameters": [
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "tags",
+                                "paths_PathItem_get_parameters_Parameter_in": "query",
+                                "paths_PathItem_get_parameters_Parameter_description": "Tags to filter by",
+                                "paths_PathItem_get_parameters_Parameter_required": true,
+                                "paths_PathItem_get_parameters_Parameter_explode": true,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "array",
+                                    "paths_PathItem_get_parameters_Parameter_schema_items": {
+                                        "paths_PathItem_get_parameters_Parameter_schema_items_type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_type": "array",
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_items": {
+                                            "paths_PathItem_get_responses_200_content_application_json_schema_items_ref": "#/components/schemas/Pet"
+                                        }
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_content_application_xml": {
+                                    "paths_PathItem_get_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_type": "array",
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_items": {
+                                            "paths_PathItem_get_responses_200_content_application_xml_schema_items_ref": "#/components/schemas/Pet"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_400": {
+                            "paths_PathItem_get_responses_400_description": "Invalid tag value"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_get_security": [
+                        {
+                            "paths_PathItem_get_security_Item": {
+                                "paths_PathItem_get_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_get_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_get_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/pet/{petId}",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Find pet by ID.",
+                    "paths_PathItem_get_description": "Returns a single pet.",
+                    "paths_PathItem_get_operationId": "getPetById",
+                    "paths_PathItem_get_parameters": [
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "petId",
+                                "paths_PathItem_get_parameters_Parameter_in": "path",
+                                "paths_PathItem_get_parameters_Parameter_description": "ID of pet to return",
+                                "paths_PathItem_get_parameters_Parameter_required": true,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "integer",
+                                    "paths_PathItem_get_parameters_Parameter_schema_format": "int64"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_content_application_xml": {
+                                    "paths_PathItem_get_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_400": {
+                            "paths_PathItem_get_responses_400_description": "Invalid ID supplied"
+                        },
+                        "paths_PathItem_get_responses_404": {
+                            "paths_PathItem_get_responses_404_description": "Pet not found"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_get_security": [
+                        {
+                            "paths_PathItem_get_security_Item": {
+                                "paths_PathItem_get_security_Item_api_key": []
+                            }
+                        },
+                        {
+                            "paths_PathItem_get_security_Item": {
+                                "paths_PathItem_get_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_get_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_get_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "paths_PathItem_post": {
+                    "paths_PathItem_post_tags": [
+                        {
+                            "paths_PathItem_post_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_post_summary": "Updates a pet in the store with form data.",
+                    "paths_PathItem_post_description": "Updates a pet resource based on the form data.",
+                    "paths_PathItem_post_operationId": "updatePetWithForm",
+                    "paths_PathItem_post_parameters": [
+                        {
+                            "paths_PathItem_post_parameters_Parameter": {
+                                "paths_PathItem_post_parameters_Parameter_name": "petId",
+                                "paths_PathItem_post_parameters_Parameter_in": "path",
+                                "paths_PathItem_post_parameters_Parameter_description": "ID of pet that needs to be updated",
+                                "paths_PathItem_post_parameters_Parameter_required": true,
+                                "paths_PathItem_post_parameters_Parameter_schema": {
+                                    "paths_PathItem_post_parameters_Parameter_schema_type": "integer",
+                                    "paths_PathItem_post_parameters_Parameter_schema_format": "int64"
+                                }
+                            }
+                        },
+                        {
+                            "paths_PathItem_post_parameters_Parameter": {
+                                "paths_PathItem_post_parameters_Parameter_name": "name",
+                                "paths_PathItem_post_parameters_Parameter_in": "query",
+                                "paths_PathItem_post_parameters_Parameter_description": "Name of pet that needs to be updated",
+                                "paths_PathItem_post_parameters_Parameter_schema": {
+                                    "paths_PathItem_post_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        },
+                        {
+                            "paths_PathItem_post_parameters_Parameter": {
+                                "paths_PathItem_post_parameters_Parameter_name": "status",
+                                "paths_PathItem_post_parameters_Parameter_in": "query",
+                                "paths_PathItem_post_parameters_Parameter_description": "Status of pet that needs to be updated",
+                                "paths_PathItem_post_parameters_Parameter_schema": {
+                                    "paths_PathItem_post_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_post_responses": {
+                        "paths_PathItem_post_responses_200": {
+                            "paths_PathItem_post_responses_200_description": "successful operation",
+                            "paths_PathItem_post_responses_200_content": {
+                                "paths_PathItem_post_responses_200_content_application_json": {
+                                    "paths_PathItem_post_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_json_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                },
+                                "paths_PathItem_post_responses_200_content_application_xml": {
+                                    "paths_PathItem_post_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_responses_400": {
+                            "paths_PathItem_post_responses_400_description": "Invalid input"
+                        },
+                        "paths_PathItem_post_responses_default": {
+                            "paths_PathItem_post_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_post_security": [
+                        {
+                            "paths_PathItem_post_security_Item": {
+                                "paths_PathItem_post_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_post_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_post_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "paths_PathItem_delete": {
+                    "paths_PathItem_delete_tags": [
+                        {
+                            "paths_PathItem_delete_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_delete_summary": "Deletes a pet.",
+                    "paths_PathItem_delete_description": "Delete a pet.",
+                    "paths_PathItem_delete_operationId": "deletePet",
+                    "paths_PathItem_delete_parameters": [
+                        {
+                            "paths_PathItem_delete_parameters_Parameter": {
+                                "paths_PathItem_delete_parameters_Parameter_name": "api_key",
+                                "paths_PathItem_delete_parameters_Parameter_in": "header",
+                                "paths_PathItem_delete_parameters_Parameter_description": "",
+                                "paths_PathItem_delete_parameters_Parameter_required": false,
+                                "paths_PathItem_delete_parameters_Parameter_schema": {
+                                    "paths_PathItem_delete_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        },
+                        {
+                            "paths_PathItem_delete_parameters_Parameter": {
+                                "paths_PathItem_delete_parameters_Parameter_name": "petId",
+                                "paths_PathItem_delete_parameters_Parameter_in": "path",
+                                "paths_PathItem_delete_parameters_Parameter_description": "Pet id to delete",
+                                "paths_PathItem_delete_parameters_Parameter_required": true,
+                                "paths_PathItem_delete_parameters_Parameter_schema": {
+                                    "paths_PathItem_delete_parameters_Parameter_schema_type": "integer",
+                                    "paths_PathItem_delete_parameters_Parameter_schema_format": "int64"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_delete_responses": {
+                        "paths_PathItem_delete_responses_200": {
+                            "paths_PathItem_delete_responses_200_description": "Pet deleted"
+                        },
+                        "paths_PathItem_delete_responses_400": {
+                            "paths_PathItem_delete_responses_400_description": "Invalid pet value"
+                        },
+                        "paths_PathItem_delete_responses_default": {
+                            "paths_PathItem_delete_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_delete_security": [
+                        {
+                            "paths_PathItem_delete_security_Item": {
+                                "paths_PathItem_delete_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_delete_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_delete_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/pet/{petId}/uploadImage",
+                "paths_PathItem_post": {
+                    "paths_PathItem_post_tags": [
+                        {
+                            "paths_PathItem_post_tags_StringValue": "pet"
+                        }
+                    ],
+                    "paths_PathItem_post_summary": "Uploads an image.",
+                    "paths_PathItem_post_description": "Upload image of the pet.",
+                    "paths_PathItem_post_operationId": "uploadFile",
+                    "paths_PathItem_post_parameters": [
+                        {
+                            "paths_PathItem_post_parameters_Parameter": {
+                                "paths_PathItem_post_parameters_Parameter_name": "petId",
+                                "paths_PathItem_post_parameters_Parameter_in": "path",
+                                "paths_PathItem_post_parameters_Parameter_description": "ID of pet to update",
+                                "paths_PathItem_post_parameters_Parameter_required": true,
+                                "paths_PathItem_post_parameters_Parameter_schema": {
+                                    "paths_PathItem_post_parameters_Parameter_schema_type": "integer",
+                                    "paths_PathItem_post_parameters_Parameter_schema_format": "int64"
+                                }
+                            }
+                        },
+                        {
+                            "paths_PathItem_post_parameters_Parameter": {
+                                "paths_PathItem_post_parameters_Parameter_name": "additionalMetadata",
+                                "paths_PathItem_post_parameters_Parameter_in": "query",
+                                "paths_PathItem_post_parameters_Parameter_description": "Additional Metadata",
+                                "paths_PathItem_post_parameters_Parameter_required": false,
+                                "paths_PathItem_post_parameters_Parameter_schema": {
+                                    "paths_PathItem_post_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_post_requestBody": {
+                        "paths_PathItem_post_requestBody_content": {
+                            "paths_PathItem_post_requestBody_content_application_octet_stream": {
+                                "paths_PathItem_post_requestBody_content_application_octet_stream_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_octet_stream_schema_type": "string",
+                                    "paths_PathItem_post_requestBody_content_application_octet_stream_schema_format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "paths_PathItem_post_responses": {
+                        "paths_PathItem_post_responses_200": {
+                            "paths_PathItem_post_responses_200_description": "successful operation",
+                            "paths_PathItem_post_responses_200_content": {
+                                "paths_PathItem_post_responses_200_content_application_json": {
+                                    "paths_PathItem_post_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_json_schema_ref": "#/components/schemas/ApiResponse"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_responses_400": {
+                            "paths_PathItem_post_responses_400_description": "No file uploaded"
+                        },
+                        "paths_PathItem_post_responses_404": {
+                            "paths_PathItem_post_responses_404_description": "Pet not found"
+                        },
+                        "paths_PathItem_post_responses_default": {
+                            "paths_PathItem_post_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_post_security": [
+                        {
+                            "paths_PathItem_post_security_Item": {
+                                "paths_PathItem_post_security_Item_petstore_auth": [
+                                    {
+                                        "paths_PathItem_post_security_Item_petstore_auth_StringValue": "write:pets"
+                                    },
+                                    {
+                                        "paths_PathItem_post_security_Item_petstore_auth_StringValue": "read:pets"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/store/inventory",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "store"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Returns pet inventories by status.",
+                    "paths_PathItem_get_description": "Returns a map of status codes to quantities.",
+                    "paths_PathItem_get_operationId": "getInventory",
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_type": "object",
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_additionalProperties": {
+                                            "paths_PathItem_get_responses_200_content_application_json_schema_additionalProperties_type": "integer",
+                                            "paths_PathItem_get_responses_200_content_application_json_schema_additionalProperties_format": "int32"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    },
+                    "paths_PathItem_get_security": [
+                        {
+                            "paths_PathItem_get_security_Item": {
+                                "paths_PathItem_get_security_Item_api_key": []
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/store/order",
+                "paths_PathItem_post": {
+                    "paths_PathItem_post_tags": [
+                        {
+                            "paths_PathItem_post_tags_StringValue": "store"
+                        }
+                    ],
+                    "paths_PathItem_post_summary": "Place an order for a pet.",
+                    "paths_PathItem_post_description": "Place a new order in the store.",
+                    "paths_PathItem_post_operationId": "placeOrder",
+                    "paths_PathItem_post_requestBody": {
+                        "paths_PathItem_post_requestBody_content": {
+                            "paths_PathItem_post_requestBody_content_application_json": {
+                                "paths_PathItem_post_requestBody_content_application_json_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_json_schema_ref": "#/components/schemas/Order"
+                                }
+                            },
+                            "paths_PathItem_post_requestBody_content_application_xml": {
+                                "paths_PathItem_post_requestBody_content_application_xml_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_xml_schema_ref": "#/components/schemas/Order"
+                                }
+                            },
+                            "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded": {
+                                "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded_schema_ref": "#/components/schemas/Order"
+                                }
+                            }
+                        }
+                    },
+                    "paths_PathItem_post_responses": {
+                        "paths_PathItem_post_responses_200": {
+                            "paths_PathItem_post_responses_200_description": "successful operation",
+                            "paths_PathItem_post_responses_200_content": {
+                                "paths_PathItem_post_responses_200_content_application_json": {
+                                    "paths_PathItem_post_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_json_schema_ref": "#/components/schemas/Order"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_responses_400": {
+                            "paths_PathItem_post_responses_400_description": "Invalid input"
+                        },
+                        "paths_PathItem_post_responses_422": {
+                            "paths_PathItem_post_responses_422_description": "Validation exception"
+                        },
+                        "paths_PathItem_post_responses_default": {
+                            "paths_PathItem_post_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/store/order/{orderId}",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "store"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Find purchase order by ID.",
+                    "paths_PathItem_get_description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.",
+                    "paths_PathItem_get_operationId": "getOrderById",
+                    "paths_PathItem_get_parameters": [
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "orderId",
+                                "paths_PathItem_get_parameters_Parameter_in": "path",
+                                "paths_PathItem_get_parameters_Parameter_description": "ID of order that needs to be fetched",
+                                "paths_PathItem_get_parameters_Parameter_required": true,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "integer",
+                                    "paths_PathItem_get_parameters_Parameter_schema_format": "int64"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_ref": "#/components/schemas/Order"
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_content_application_xml": {
+                                    "paths_PathItem_get_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_ref": "#/components/schemas/Order"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_400": {
+                            "paths_PathItem_get_responses_400_description": "Invalid ID supplied"
+                        },
+                        "paths_PathItem_get_responses_404": {
+                            "paths_PathItem_get_responses_404_description": "Order not found"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    }
+                },
+                "paths_PathItem_delete": {
+                    "paths_PathItem_delete_tags": [
+                        {
+                            "paths_PathItem_delete_tags_StringValue": "store"
+                        }
+                    ],
+                    "paths_PathItem_delete_summary": "Delete purchase order by identifier.",
+                    "paths_PathItem_delete_description": "For valid response try integer IDs with value < 1000. Anything above 1000 or non-integers will generate API errors.",
+                    "paths_PathItem_delete_operationId": "deleteOrder",
+                    "paths_PathItem_delete_parameters": [
+                        {
+                            "paths_PathItem_delete_parameters_Parameter": {
+                                "paths_PathItem_delete_parameters_Parameter_name": "orderId",
+                                "paths_PathItem_delete_parameters_Parameter_in": "path",
+                                "paths_PathItem_delete_parameters_Parameter_description": "ID of the order that needs to be deleted",
+                                "paths_PathItem_delete_parameters_Parameter_required": true,
+                                "paths_PathItem_delete_parameters_Parameter_schema": {
+                                    "paths_PathItem_delete_parameters_Parameter_schema_type": "integer",
+                                    "paths_PathItem_delete_parameters_Parameter_schema_format": "int64"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_delete_responses": {
+                        "paths_PathItem_delete_responses_200": {
+                            "paths_PathItem_delete_responses_200_description": "order deleted"
+                        },
+                        "paths_PathItem_delete_responses_400": {
+                            "paths_PathItem_delete_responses_400_description": "Invalid ID supplied"
+                        },
+                        "paths_PathItem_delete_responses_404": {
+                            "paths_PathItem_delete_responses_404_description": "Order not found"
+                        },
+                        "paths_PathItem_delete_responses_default": {
+                            "paths_PathItem_delete_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/user",
+                "paths_PathItem_post": {
+                    "paths_PathItem_post_tags": [
+                        {
+                            "paths_PathItem_post_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_post_summary": "Create user.",
+                    "paths_PathItem_post_description": "This can only be done by the logged in user.",
+                    "paths_PathItem_post_operationId": "createUser",
+                    "paths_PathItem_post_requestBody": {
+                        "paths_PathItem_post_requestBody_description": "Created user object",
+                        "paths_PathItem_post_requestBody_content": {
+                            "paths_PathItem_post_requestBody_content_application_json": {
+                                "paths_PathItem_post_requestBody_content_application_json_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_json_schema_ref": "#/components/schemas/User"
+                                }
+                            },
+                            "paths_PathItem_post_requestBody_content_application_xml": {
+                                "paths_PathItem_post_requestBody_content_application_xml_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_xml_schema_ref": "#/components/schemas/User"
+                                }
+                            },
+                            "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded": {
+                                "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_x_www_form_urlencoded_schema_ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "paths_PathItem_post_responses": {
+                        "paths_PathItem_post_responses_200": {
+                            "paths_PathItem_post_responses_200_description": "successful operation",
+                            "paths_PathItem_post_responses_200_content": {
+                                "paths_PathItem_post_responses_200_content_application_json": {
+                                    "paths_PathItem_post_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_json_schema_ref": "#/components/schemas/User"
+                                    }
+                                },
+                                "paths_PathItem_post_responses_200_content_application_xml": {
+                                    "paths_PathItem_post_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_xml_schema_ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_responses_default": {
+                            "paths_PathItem_post_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/user/createWithList",
+                "paths_PathItem_post": {
+                    "paths_PathItem_post_tags": [
+                        {
+                            "paths_PathItem_post_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_post_summary": "Creates list of users with given input array.",
+                    "paths_PathItem_post_description": "Creates list of users with given input array.",
+                    "paths_PathItem_post_operationId": "createUsersWithListInput",
+                    "paths_PathItem_post_requestBody": {
+                        "paths_PathItem_post_requestBody_content": {
+                            "paths_PathItem_post_requestBody_content_application_json": {
+                                "paths_PathItem_post_requestBody_content_application_json_schema": {
+                                    "paths_PathItem_post_requestBody_content_application_json_schema_type": "array",
+                                    "paths_PathItem_post_requestBody_content_application_json_schema_items": {
+                                        "paths_PathItem_post_requestBody_content_application_json_schema_items_ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "paths_PathItem_post_responses": {
+                        "paths_PathItem_post_responses_200": {
+                            "paths_PathItem_post_responses_200_description": "Successful operation",
+                            "paths_PathItem_post_responses_200_content": {
+                                "paths_PathItem_post_responses_200_content_application_json": {
+                                    "paths_PathItem_post_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_json_schema_ref": "#/components/schemas/User"
+                                    }
+                                },
+                                "paths_PathItem_post_responses_200_content_application_xml": {
+                                    "paths_PathItem_post_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_post_responses_200_content_application_xml_schema_ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_post_responses_default": {
+                            "paths_PathItem_post_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/user/login",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Logs user into the system.",
+                    "paths_PathItem_get_description": "Log into the system.",
+                    "paths_PathItem_get_operationId": "loginUser",
+                    "paths_PathItem_get_parameters": [
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "username",
+                                "paths_PathItem_get_parameters_Parameter_in": "query",
+                                "paths_PathItem_get_parameters_Parameter_description": "The user name for login",
+                                "paths_PathItem_get_parameters_Parameter_required": false,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        },
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "password",
+                                "paths_PathItem_get_parameters_Parameter_in": "query",
+                                "paths_PathItem_get_parameters_Parameter_description": "The password for login in clear text",
+                                "paths_PathItem_get_parameters_Parameter_required": false,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_headers": {
+                                "paths_PathItem_get_responses_200_headers_X_Rate_Limit": {
+                                    "paths_PathItem_get_responses_200_headers_X_Rate_Limit_description": "calls per hour allowed by the user",
+                                    "paths_PathItem_get_responses_200_headers_X_Rate_Limit_schema": {
+                                        "paths_PathItem_get_responses_200_headers_X_Rate_Limit_schema_type": "integer",
+                                        "paths_PathItem_get_responses_200_headers_X_Rate_Limit_schema_format": "int32"
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_headers_X_Expires_After": {
+                                    "paths_PathItem_get_responses_200_headers_X_Expires_After_description": "date in UTC when token expires",
+                                    "paths_PathItem_get_responses_200_headers_X_Expires_After_schema": {
+                                        "paths_PathItem_get_responses_200_headers_X_Expires_After_schema_type": "string",
+                                        "paths_PathItem_get_responses_200_headers_X_Expires_After_schema_format": "date-time"
+                                    }
+                                }
+                            },
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_xml": {
+                                    "paths_PathItem_get_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_type": "string"
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_400": {
+                            "paths_PathItem_get_responses_400_description": "Invalid username/password supplied"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/user/logout",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Logs out current logged in user session.",
+                    "paths_PathItem_get_description": "Log user out of the system.",
+                    "paths_PathItem_get_operationId": "logoutUser",
+                    "paths_PathItem_get_parameters": [],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            },
+            {
+                "paths_PathItem_KeyValue": "/user/{username}",
+                "paths_PathItem_get": {
+                    "paths_PathItem_get_tags": [
+                        {
+                            "paths_PathItem_get_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_get_summary": "Get user by user name.",
+                    "paths_PathItem_get_description": "Get user detail based on username.",
+                    "paths_PathItem_get_operationId": "getUserByName",
+                    "paths_PathItem_get_parameters": [
+                        {
+                            "paths_PathItem_get_parameters_Parameter": {
+                                "paths_PathItem_get_parameters_Parameter_name": "username",
+                                "paths_PathItem_get_parameters_Parameter_in": "path",
+                                "paths_PathItem_get_parameters_Parameter_description": "The name that needs to be fetched. Use user1 for testing",
+                                "paths_PathItem_get_parameters_Parameter_required": true,
+                                "paths_PathItem_get_parameters_Parameter_schema": {
+                                    "paths_PathItem_get_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_get_responses": {
+                        "paths_PathItem_get_responses_200": {
+                            "paths_PathItem_get_responses_200_description": "successful operation",
+                            "paths_PathItem_get_responses_200_content": {
+                                "paths_PathItem_get_responses_200_content_application_json": {
+                                    "paths_PathItem_get_responses_200_content_application_json_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_json_schema_ref": "#/components/schemas/User"
+                                    }
+                                },
+                                "paths_PathItem_get_responses_200_content_application_xml": {
+                                    "paths_PathItem_get_responses_200_content_application_xml_schema": {
+                                        "paths_PathItem_get_responses_200_content_application_xml_schema_ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        },
+                        "paths_PathItem_get_responses_400": {
+                            "paths_PathItem_get_responses_400_description": "Invalid username supplied"
+                        },
+                        "paths_PathItem_get_responses_404": {
+                            "paths_PathItem_get_responses_404_description": "User not found"
+                        },
+                        "paths_PathItem_get_responses_default": {
+                            "paths_PathItem_get_responses_default_description": "Unexpected error"
+                        }
+                    }
+                },
+                "paths_PathItem_put": {
+                    "paths_PathItem_put_tags": [
+                        {
+                            "paths_PathItem_put_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_put_summary": "Update user resource.",
+                    "paths_PathItem_put_description": "This can only be done by the logged in user.",
+                    "paths_PathItem_put_operationId": "updateUser",
+                    "paths_PathItem_put_parameters": [
+                        {
+                            "paths_PathItem_put_parameters_Parameter": {
+                                "paths_PathItem_put_parameters_Parameter_name": "username",
+                                "paths_PathItem_put_parameters_Parameter_in": "path",
+                                "paths_PathItem_put_parameters_Parameter_description": "name that need to be deleted",
+                                "paths_PathItem_put_parameters_Parameter_required": true,
+                                "paths_PathItem_put_parameters_Parameter_schema": {
+                                    "paths_PathItem_put_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_put_requestBody": {
+                        "paths_PathItem_put_requestBody_description": "Update an existent user in the store",
+                        "paths_PathItem_put_requestBody_content": {
+                            "paths_PathItem_put_requestBody_content_application_json": {
+                                "paths_PathItem_put_requestBody_content_application_json_schema": {
+                                    "paths_PathItem_put_requestBody_content_application_json_schema_ref": "#/components/schemas/User"
+                                }
+                            },
+                            "paths_PathItem_put_requestBody_content_application_xml": {
+                                "paths_PathItem_put_requestBody_content_application_xml_schema": {
+                                    "paths_PathItem_put_requestBody_content_application_xml_schema_ref": "#/components/schemas/User"
+                                }
+                            },
+                            "paths_PathItem_put_requestBody_content_application_x_www_form_urlencoded": {
+                                "paths_PathItem_put_requestBody_content_application_x_www_form_urlencoded_schema": {
+                                    "paths_PathItem_put_requestBody_content_application_x_www_form_urlencoded_schema_ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "paths_PathItem_put_responses": {
+                        "paths_PathItem_put_responses_200": {
+                            "paths_PathItem_put_responses_200_description": "successful operation"
+                        },
+                        "paths_PathItem_put_responses_400": {
+                            "paths_PathItem_put_responses_400_description": "bad request"
+                        },
+                        "paths_PathItem_put_responses_404": {
+                            "paths_PathItem_put_responses_404_description": "user not found"
+                        },
+                        "paths_PathItem_put_responses_default": {
+                            "paths_PathItem_put_responses_default_description": "Unexpected error"
+                        }
+                    }
+                },
+                "paths_PathItem_delete": {
+                    "paths_PathItem_delete_tags": [
+                        {
+                            "paths_PathItem_delete_tags_StringValue": "user"
+                        }
+                    ],
+                    "paths_PathItem_delete_summary": "Delete user resource.",
+                    "paths_PathItem_delete_description": "This can only be done by the logged in user.",
+                    "paths_PathItem_delete_operationId": "deleteUser",
+                    "paths_PathItem_delete_parameters": [
+                        {
+                            "paths_PathItem_delete_parameters_Parameter": {
+                                "paths_PathItem_delete_parameters_Parameter_name": "username",
+                                "paths_PathItem_delete_parameters_Parameter_in": "path",
+                                "paths_PathItem_delete_parameters_Parameter_description": "The name that needs to be deleted",
+                                "paths_PathItem_delete_parameters_Parameter_required": true,
+                                "paths_PathItem_delete_parameters_Parameter_schema": {
+                                    "paths_PathItem_delete_parameters_Parameter_schema_type": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "paths_PathItem_delete_responses": {
+                        "paths_PathItem_delete_responses_200": {
+                            "paths_PathItem_delete_responses_200_description": "User deleted"
+                        },
+                        "paths_PathItem_delete_responses_400": {
+                            "paths_PathItem_delete_responses_400_description": "Invalid username supplied"
+                        },
+                        "paths_PathItem_delete_responses_404": {
+                            "paths_PathItem_delete_responses_404_description": "User not found"
+                        },
+                        "paths_PathItem_delete_responses_default": {
+                            "paths_PathItem_delete_responses_default_description": "Unexpected error"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "components": {
+        "components_schemas": {
+            "components_schemas_Schema": [
+                {
+                    "components_schemas_Schema_KeyValue": "Order",
+                    "components_schemas_Schema_type": "object",
+                    "components_schemas_Schema_properties": {
+                        "components_schemas_Schema_properties_id": {
+                            "components_schemas_Schema_properties_id_type": "integer",
+                            "components_schemas_Schema_properties_id_format": "int64",
+                            "components_schemas_Schema_properties_id_example": 10
+                        },
+                        "components_schemas_Schema_properties_petId": {
+                            "components_schemas_Schema_properties_petId_type": "integer",
+                            "components_schemas_Schema_properties_petId_format": "int64",
+                            "components_schemas_Schema_properties_petId_example": 198772
+                        },
+                        "components_schemas_Schema_properties_quantity": {
+                            "components_schemas_Schema_properties_quantity_type": "integer",
+                            "components_schemas_Schema_properties_quantity_format": "int32",
+                            "components_schemas_Schema_properties_quantity_example": 7
+                        },
+                        "components_schemas_Schema_properties_shipDate": {
+                            "components_schemas_Schema_properties_shipDate_type": "string",
+                            "components_schemas_Schema_properties_shipDate_format": "date-time"
+                        },
+                        "components_schemas_Schema_properties_status": {
+                            "components_schemas_Schema_properties_status_type": "string",
+                            "components_schemas_Schema_properties_status_description": "Order Status",
+                            "components_schemas_Schema_properties_status_example": "approved",
+                            "components_schemas_Schema_properties_status_enum": [
+                                {
+                                    "components_schemas_Schema_properties_status_enum_StringValue": "placed"
+                                },
+                                {
+                                    "components_schemas_Schema_properties_status_enum_StringValue": "approved"
+                                },
+                                {
+                                    "components_schemas_Schema_properties_status_enum_StringValue": "delivered"
+                                }
+                            ]
+                        },
+                        "components_schemas_Schema_properties_complete": {
+                            "components_schemas_Schema_properties_complete_type": "boolean"
+                        }
+                    },
+                    "components_schemas_Schema_xml": {
+                        "components_schemas_Schema_xml_name": "order"
+                    }
+                },
+                {
+                    "components_schemas_Schema_KeyValue": "Category",
+                    "components_schemas_Schema_type": "object",
+                    "components_schemas_Schema_properties": {
+                        "components_schemas_Schema_properties_id": {
+                            "components_schemas_Schema_properties_id_type": "integer",
+                            "components_schemas_Schema_properties_id_format": "int64",
+                            "components_schemas_Schema_properties_id_example": 1
+                        },
+                        "components_schemas_Schema_properties_name": {
+                            "components_schemas_Schema_properties_name_type": "string",
+                            "components_schemas_Schema_properties_name_example": "Dogs"
+                        }
+                    },
+                    "components_schemas_Schema_xml": {
+                        "components_schemas_Schema_xml_name": "category"
+                    }
+                },
+                {
+                    "components_schemas_Schema_KeyValue": "User",
+                    "components_schemas_Schema_type": "object",
+                    "components_schemas_Schema_properties": {
+                        "components_schemas_Schema_properties_id": {
+                            "components_schemas_Schema_properties_id_type": "integer",
+                            "components_schemas_Schema_properties_id_format": "int64",
+                            "components_schemas_Schema_properties_id_example": 10
+                        },
+                        "components_schemas_Schema_properties_username": {
+                            "components_schemas_Schema_properties_username_type": "string",
+                            "components_schemas_Schema_properties_username_example": "theUser"
+                        },
+                        "components_schemas_Schema_properties_firstName": {
+                            "components_schemas_Schema_properties_firstName_type": "string",
+                            "components_schemas_Schema_properties_firstName_example": "John"
+                        },
+                        "components_schemas_Schema_properties_lastName": {
+                            "components_schemas_Schema_properties_lastName_type": "string",
+                            "components_schemas_Schema_properties_lastName_example": "James"
+                        },
+                        "components_schemas_Schema_properties_email": {
+                            "components_schemas_Schema_properties_email_type": "string",
+                            "components_schemas_Schema_properties_email_example": "john@email.com"
+                        },
+                        "components_schemas_Schema_properties_password": {
+                            "components_schemas_Schema_properties_password_type": "string",
+                            "components_schemas_Schema_properties_password_example": "12345"
+                        },
+                        "components_schemas_Schema_properties_phone": {
+                            "components_schemas_Schema_properties_phone_type": "string",
+                            "components_schemas_Schema_properties_phone_example": "12345"
+                        },
+                        "components_schemas_Schema_properties_userStatus": {
+                            "components_schemas_Schema_properties_userStatus_type": "integer",
+                            "components_schemas_Schema_properties_userStatus_description": "User Status",
+                            "components_schemas_Schema_properties_userStatus_format": "int32",
+                            "components_schemas_Schema_properties_userStatus_example": 1
+                        }
+                    },
+                    "components_schemas_Schema_xml": {
+                        "components_schemas_Schema_xml_name": "user"
+                    }
+                },
+                {
+                    "components_schemas_Schema_KeyValue": "Tag",
+                    "components_schemas_Schema_type": "object",
+                    "components_schemas_Schema_properties": {
+                        "components_schemas_Schema_properties_id": {
+                            "components_schemas_Schema_properties_id_type": "integer",
+                            "components_schemas_Schema_properties_id_format": "int64"
+                        },
+                        "components_schemas_Schema_properties_name": {
+                            "components_schemas_Schema_properties_name_type": "string"
+                        }
+                    },
+                    "components_schemas_Schema_xml": {
+                        "components_schemas_Schema_xml_name": "tag"
+                    }
+                },
+                {
+                    "components_schemas_Schema_KeyValue": "Pet",
+                    "components_schemas_Schema_required": [
+                        {
+                            "components_schemas_Schema_required_StringValue": "name"
+                        },
+                        {
+                            "components_schemas_Schema_required_StringValue": "photoUrls"
+                        }
+                    ],
+                    "components_schemas_Schema_type": "object",
+                    "components_schemas_Schema_properties": {
+                        "components_schemas_Schema_properties_id": {
+                            "components_schemas_Schema_properties_id_type": "integer",
+                            "components_schemas_Schema_properties_id_format": "int64",
+                            "components_schemas_Schema_properties_id_example": 10
+                        },
+                        "components_schemas_Schema_properties_name": {
+                            "components_schemas_Schema_properties_name_type": "string",
+                            "components_schemas_Schema_properties_name_example": "doggie"
+                        },
+                        "components_schemas_Schema_properties_category": {
+                            "components_schemas_Schema_properties_category_ref": "#/components/schemas/Category"
+                        },
+                        "components_schemas_Schema_properties_photoUrls": {
+                            "components_schemas_Schema_properties_photoUrls_type": "array",
+                            "components_schemas_Schema_properties_photoUrls_xml": {
+                                "components_schemas_Schema_properties_photoUrls_xml_wrapped": true
+                            },
+                            "components_schemas_Schema_properties_photoUrls_items": {
+                                "components_schemas_Schema_properties_photoUrls_items_type": "string",
+                                "components_schemas_Schema_properties_photoUrls_items_xml": {
+                                    "components_schemas_Schema_properties_photoUrls_items_xml_name": "photoUrl"
+                                }
+                            }
+                        },
+                        "components_schemas_Schema_properties_tags": {
+                            "components_schemas_Schema_properties_tags_type": "array",
+                            "components_schemas_Schema_properties_tags_xml": {
+                                "components_schemas_Schema_properties_tags_xml_wrapped": true
+                            },
+                            "components_schemas_Schema_properties_tags_items": {
+                                "components_schemas_Schema_properties_tags_items_ref": "#/components/schemas/Tag"
+                            }
+                        },
+                        "components_schemas_Schema_properties_status": {
+                            "components_schemas_Schema_properties_status_type": "string",
+                            "components_schemas_Schema_properties_status_description": "pet status in the store",
+                            "components_schemas_Schema_properties_status_enum": [
+                                {
+                                    "components_schemas_Schema_properties_status_enum_StringValue": "available"
+                                },
+                                {
+                                    "components_schemas_Schema_properties_status_enum_StringValue": "pending"
+                                },
+                                {
+                                    "components_schemas_Schema_properties_status_enum_StringValue": "sold"
+                                }
+                            ]
+                        }
+                    },
+                    "components_schemas_Schema_xml": {
+                        "components_schemas_Schema_xml_name": "pet"
+                    }
+                },
+                {
+                    "components_schemas_Schema_KeyValue": "ApiResponse",
+                    "components_schemas_Schema_type": "object",
+                    "components_schemas_Schema_properties": {
+                        "components_schemas_Schema_properties_code": {
+                            "components_schemas_Schema_properties_code_type": "integer",
+                            "components_schemas_Schema_properties_code_format": "int32"
+                        },
+                        "components_schemas_Schema_properties_type": {
+                            "components_schemas_Schema_properties_type_type": "string"
+                        },
+                        "components_schemas_Schema_properties_message": {
+                            "components_schemas_Schema_properties_message_type": "string"
+                        }
+                    },
+                    "components_schemas_Schema_xml": {
+                        "components_schemas_Schema_xml_name": "##default"
+                    }
+                }
+            ]
+        },
+        "components_requestBodies": {
+            "components_requestBodies_RequestBody": [
+                {
+                    "components_requestBodies_RequestBody_KeyValue": "Pet",
+                    "components_requestBodies_RequestBody_description": "Pet object that needs to be added to the store",
+                    "components_requestBodies_RequestBody_content": {
+                        "components_requestBodies_RequestBody_content_application_json": {
+                            "components_requestBodies_RequestBody_content_application_json_schema": {
+                                "components_requestBodies_RequestBody_content_application_json_schema_ref": "#/components/schemas/Pet"
+                            }
+                        },
+                        "components_requestBodies_RequestBody_content_application_xml": {
+                            "components_requestBodies_RequestBody_content_application_xml_schema": {
+                                "components_requestBodies_RequestBody_content_application_xml_schema_ref": "#/components/schemas/Pet"
+                            }
+                        }
+                    }
+                },
+                {
+                    "components_requestBodies_RequestBody_KeyValue": "UserArray",
+                    "components_requestBodies_RequestBody_description": "List of user object",
+                    "components_requestBodies_RequestBody_content": {
+                        "components_requestBodies_RequestBody_content_application_json": {
+                            "components_requestBodies_RequestBody_content_application_json_schema": {
+                                "components_requestBodies_RequestBody_content_application_json_schema_type": "array",
+                                "components_requestBodies_RequestBody_content_application_json_schema_items": {
+                                    "components_requestBodies_RequestBody_content_application_json_schema_items_ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "components_securitySchemes": {
+            "components_securitySchemes_SecurityScheme": [
+                {
+                    "components_securitySchemes_SecurityScheme_KeyValue": "petstore_auth",
+                    "components_securitySchemes_SecurityScheme_type": "oauth2",
+                    "components_securitySchemes_SecurityScheme_flows": {
+                        "components_securitySchemes_SecurityScheme_flows_implicit": {
+                            "components_securitySchemes_SecurityScheme_flows_implicit_authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+                            "components_securitySchemes_SecurityScheme_flows_implicit_scopes": {
+                                "components_securitySchemes_SecurityScheme_flows_implicit_scopes_write:pets": "modify pets in your account",
+                                "components_securitySchemes_SecurityScheme_flows_implicit_scopes_read:pets": "read your pets"
+                            }
+                        }
+                    }
+                },
+                {
+                    "components_securitySchemes_SecurityScheme_KeyValue": "api_key",
+                    "components_securitySchemes_SecurityScheme_type": "apiKey",
+                    "components_securitySchemes_SecurityScheme_name": "api_key",
+                    "components_securitySchemes_SecurityScheme_in": "header"
+                }
+            ]
+        }
+    }
+}
