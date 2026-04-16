@@ -1,0 +1,105 @@
+{
+    "map_wrappers": {
+        "variables": "ServerVariable",
+        "security": "Value",
+        "paths": "PathItem",
+        "properties": "Value",
+        "mapping": "Value",
+        "content": "MediaType",
+        "examples": "Value",
+        "encoding": "Encoding",
+        "headers": "Value",
+        "links": "Value",
+        "responses": "Value",
+        "callbacks": "Value",
+        "schemas": "Value",
+        "parameters": "Value",
+        "requestBodies": "Value",
+        "securitySchemes": "Value",
+        "scopes": "Value",
+        "Callback": "PathItem"
+    },
+    "polymorphic_keys": {
+        "parameters": [
+            "Parameter",
+            "Reference"
+        ],
+        "schema": [
+            "Schema",
+            "Reference"
+        ],
+        "not": [
+            "Schema",
+            "Reference"
+        ],
+        "allOf": [
+            "Schema",
+            "Reference"
+        ],
+        "oneOf": [
+            "Schema",
+            "Reference"
+        ],
+        "anyOf": [
+            "Schema",
+            "Reference"
+        ],
+        "items": [
+            "Schema",
+            "Reference"
+        ],
+        "Value": [
+            "Schema",
+            "Reference",
+            "Example",
+            "Header",
+            "Link",
+            "Response",
+            "Callback",
+            "Parameter",
+            "RequestBody",
+            "SecurityScheme"
+        ],
+        "additionalProperties": [
+            "Schema",
+            "Reference",
+            "Boolean"
+        ],
+        "Parameter": [
+            "PathParameter",
+            "QueryParameter",
+            "HeaderParameter",
+            "CookieParameter"
+        ],
+        "requestBody": [
+            "RequestBody",
+            "Reference"
+        ],
+        "default": [
+            "Response",
+            "Reference"
+        ],
+        "SecurityScheme": [
+            "APIKeySecurityScheme",
+            "HTTPSecurityScheme",
+            "OAuth2SecurityScheme",
+            "OpenIdConnectSecurityScheme"
+        ],
+        "HTTPSecurityScheme": [
+            "Bearer",
+            "Non_Bearer"
+        ]
+    },
+    "array_items": {
+        "servers": "Server",
+        "enum": "StringValue",
+        "security": "SecurityRequirement",
+        "Array": "StringValue",
+        "tags": "StringValue",
+        "parameters": "Item",
+        "required": "StringValue",
+        "allOf": "Item",
+        "oneOf": "Item",
+        "anyOf": "Item"
+    }
+}

@@ -89,8 +89,14 @@ class MetaSchema_UVL_Parser:
         print(f"Cargando JSON Schema: {json_path}...")
         with open(json_path, 'r', encoding='utf-8') as f:
             self.schema = json.load(f)
-        self.uvl_lines = []
 
+        self.uvl_lines = []
+        self.extraction_rules = {
+            "map_wrappers": {},  # Clave -> Nombre del Wrapper (ej. paths -> PathItem)
+            "polymorphic_keys": {}, # Clave -> [Lista de opciones] (ej. requestBody -> [RequestBody, Reference])
+            "array_items": {} # Clave -> Nombre del Item (ej. servers -> Server)
+        }
+        
     def resolve_reference(self, ref):
         parts = ref.strip('#/').split('/')
         schema_node = self.schema
@@ -102,7 +108,7 @@ class MetaSchema_UVL_Parser:
         except Exception:
             return None
 
-    def generate_uvl(self, output_path):
+    def generate_uvl(self, output_path, rules_output_path="openapi_extraction_rules.json"):
         self.uvl_lines = [
             "namespace OpenAPI_3_0_Specification", 
             "features", 
@@ -139,6 +145,10 @@ class MetaSchema_UVL_Parser:
             f.write("\n".join(self.uvl_lines))
         print(f"✅ Modelo UVL generado: {output_path}")
 
+        with open(rules_output_path, "w", encoding="utf-8") as f:
+            json.dump(self.extraction_rules, f, indent=4)
+        print(f"✅ Reglas de extracción guardadas: {rules_output_path}")
+    
     def parse_node(self, node, parent_name, local_stack_refs, depth):
         if depth > 50: return []
         features = []
@@ -195,6 +205,8 @@ class MetaSchema_UVL_Parser:
         # 5. ARRAYS (items)
         if node.get("type") == "array" and "items" in node:
             items = node["items"]
+            last_key = parent_name.split("_")[-1] if "_" in parent_name else parent_name
+
             if isinstance(items, dict) and items:
                 if items.get("type") in ["string", "integer", "number", "boolean"] and not "properties" in items:
                     t_name = items.get("type").capitalize()
@@ -202,7 +214,18 @@ class MetaSchema_UVL_Parser:
                     child_name = f"{parent_name}_{t_name}Value"
                     child_feat = self._create_base_feature(items, child_name, is_req=True)
                     features.append(child_feat)
+
+                    self.extraction_rules["array_items"][last_key] = f"{t_name}Value"
                 else:
+                    # --- REGLA PARA EL LECTOR (Objetos o Referencias) ---
+                    if "$ref" in items:
+                        # Si es una referencia, el UVL usa el nombre de la ref (ej. 'Server', 'Tag')
+                        ref_name = sanitize(items["$ref"].split('/')[-1])
+                        self.extraction_rules["array_items"][last_key] = ref_name
+                    else:
+                        # Si es un objeto anónimo (inline), usamos un nombre genérico
+                        self.extraction_rules["array_items"][last_key] = "Item"
+
                     sub_feats = self.parse_node(items, parent_name, local_stack_refs, depth + 1)
                     for sf in sub_feats: sf["required"] = sf.get("required", False) 
                     features.extend(sub_feats)
@@ -211,6 +234,11 @@ class MetaSchema_UVL_Parser:
         # 6. POLIMORFISMO SEMÁNTICO (oneOf / anyOf)
         for choice_key in ["oneOf", "anyOf"]:
             if choice_key in node:
+                
+                last_key = parent_name.split("_")[-1] if "_" in parent_name else parent_name
+                if last_key not in self.extraction_rules["polymorphic_keys"]:
+                    self.extraction_rules["polymorphic_keys"][last_key] = []
+
                 for i, branch in enumerate(node[choice_key]):
                     
                     # --- NUEVA LÓGICA DE EXTRACCIÓN DE NOMBRES ---
@@ -242,13 +270,16 @@ class MetaSchema_UVL_Parser:
                     opt_feat["children"] = self.parse_node(branch, opt_name, local_stack_refs, depth + 1)
                     features.append(opt_feat)
                     
+                    if branch_name not in self.extraction_rules["polymorphic_keys"][last_key]:
+                        self.extraction_rules["polymorphic_keys"][last_key].append(branch_name)
+                    #self.extraction_rules["polymorphic_keys"][last_key].append(branch_name)
         return features
 
     def _process_map_value(self, val_node, parent_name, local_stack_refs, depth, pat=None):
         """Maneja la fusión del diccionario: Clave (KeyValue) + Valor + [0..*]"""
         resolved_node = val_node
         ref_name_part = None
-        
+    
         # Resolvemos la referencia para conocer el tipo y el nombre
         if "$ref" in val_node:
             ref = val_node["$ref"]
@@ -259,7 +290,11 @@ class MetaSchema_UVL_Parser:
             if not resolved_node: return None
             ref_name_part = sanitize(ref.split('/')[-1])
             local_stack_refs.append(ref)
-            
+
+        last_key = parent_name.split("_")[-1] if "_" in parent_name else parent_name
+        wrapper_name = ref_name_part if ref_name_part else "Value"
+        self.extraction_rules["map_wrappers"][last_key] = wrapper_name
+
         raw_type = resolved_node.get("type", "").lower()
         
         # CASO 1: El valor del diccionario es un Array (No se pueden fusionar cardinalidades [0..*] y [1..*])
@@ -329,5 +364,5 @@ class MetaSchema_UVL_Parser:
 if __name__ == "__main__":
     # Sustituye por la ruta a tu testing.json
     parser = MetaSchema_UVL_Parser("../resources/OpenAPI3_0.json")
-    parser.generate_uvl("../variability_model/fm_OpenAPI3_0_1_v2.uvl")
+    parser.generate_uvl("../variability_model/fm_OpenAPI3_0_1_v3.uvl")
     print("Mapeo completado.")
