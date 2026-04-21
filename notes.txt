@@ -7,3 +7,9 @@
 Comandos:
 ctrl + shift + v
 flamapy satisfiable variability_model/fm_OpenAPI3_0_1_v2.uvl
+
+
+(env) PS C:\Users\CAOSD\projects\OpenApi-fm> flamapy satisfiable variability_model/fm_OpenAPI3_0_1_v3.uvl
+WARNING:root:Namespaces are not meningful for Flama.This model has the following namespaces: OpenAPI_3_0_Specification 
+True
+(env) PS C:\Users\CAOSD\projects\OpenApi-fm> 

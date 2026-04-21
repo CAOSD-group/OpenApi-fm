@@ -1,22 +1,22 @@
 {
     "map_wrappers": {
         "variables": "ServerVariable",
-        "security": "Value",
+        "security": "SecurityValue",
         "paths": "PathItem",
-        "properties": "Value",
-        "mapping": "Value",
+        "properties": "PropertieValue",
+        "mapping": "MappingValue",
         "content": "MediaType",
-        "examples": "Value",
+        "examples": "ExampleValue",
         "encoding": "Encoding",
-        "headers": "Value",
-        "links": "Value",
-        "responses": "Value",
-        "callbacks": "Value",
-        "schemas": "Value",
-        "parameters": "Value",
-        "requestBodies": "Value",
-        "securitySchemes": "Value",
-        "scopes": "Value",
+        "headers": "HeaderValue",
+        "links": "LinkValue",
+        "responses": "ResponseValue",
+        "callbacks": "CallbackValue",
+        "schemas": "SchemaValue",
+        "parameters": "ParameterValue",
+        "requestBodies": "RequestbodieValue",
+        "securitySchemes": "SecurityschemeValue",
+        "scopes": "ScopeValue",
         "Callback": "PathItem"
     },
     "polymorphic_keys": {
@@ -48,22 +48,22 @@
             "Schema",
             "Reference"
         ],
-        "Value": [
+        "PropertieValue": [
             "Schema",
-            "Reference",
-            "Example",
-            "Header",
-            "Link",
-            "Response",
-            "Callback",
-            "Parameter",
-            "RequestBody",
-            "SecurityScheme"
+            "Reference"
         ],
         "additionalProperties": [
             "Schema",
             "Reference",
             "Boolean"
+        ],
+        "ExampleValue": [
+            "Example",
+            "Reference"
+        ],
+        "HeaderValue": [
+            "Header",
+            "Reference"
         ],
         "Parameter": [
             "PathParameter",
@@ -78,6 +78,34 @@
         "default": [
             "Response",
             "Reference"
+        ],
+        "LinkValue": [
+            "Link",
+            "Reference"
+        ],
+        "ResponseValue": [
+            "Response",
+            "Reference"
+        ],
+        "CallbackValue": [
+            "Callback",
+            "Reference"
+        ],
+        "SchemaValue": [
+            "Schema",
+            "Reference"
+        ],
+        "ParameterValue": [
+            "Reference",
+            "Parameter"
+        ],
+        "RequestbodieValue": [
+            "Reference",
+            "RequestBody"
+        ],
+        "SecurityschemeValue": [
+            "Reference",
+            "SecurityScheme"
         ],
         "SecurityScheme": [
             "APIKeySecurityScheme",

@@ -156,7 +156,7 @@ class MetaSchema_UVL_Parser:
         # 1. RESOLUCIÓN TRANSPARENTE DE $REF
         if "$ref" in node:
             ref = node["$ref"]
-            if ref in local_stack_refs: return [] 
+            if local_stack_refs.count(ref) >= 2: return [] # Evitar ciclos infinitos permitiendo hasta 2 apariciones de la misma referencia
             
             local_stack_refs.append(ref)
             resolved = self.resolve_reference(ref)
@@ -283,34 +283,44 @@ class MetaSchema_UVL_Parser:
         # Resolvemos la referencia para conocer el tipo y el nombre
         if "$ref" in val_node:
             ref = val_node["$ref"]
+            #if local_stack_refs.count(ref) >= 2: return None # Evitar ciclos infinitos permitiendo hasta 2 apariciones de la misma referencia
             if ref in local_stack_refs:
-                print(f"⚠️ Referencia cíclica detectada en {ref}, {parent_name} omitiendo para evitar bucle infinito.")
                 return None
+            
             resolved_node = self.resolve_reference(ref)
             if not resolved_node: return None
             ref_name_part = sanitize(ref.split('/')[-1])
             local_stack_refs.append(ref)
 
+        # 1. GENERAR EL NOMBRE ÚNICO DEL WRAPPER
         last_key = parent_name.split("_")[-1] if "_" in parent_name else parent_name
-        wrapper_name = ref_name_part if ref_name_part else "Value"
+        if ref_name_part:
+            wrapper_name = ref_name_part
+        else:
+            singular = last_key[:-1] if last_key.endswith('s') else last_key
+            wrapper_name = f"{singular.capitalize()}Value"
+            
+        # Guardar en las reglas para el Lector
         self.extraction_rules["map_wrappers"][last_key] = wrapper_name
 
         raw_type = resolved_node.get("type", "").lower()
         
+        # 2. CREAR LA CARACTERÍSTICA UVL USANDO EL MISMO NOMBRE (wrapper_name)
+        
         # CASO 1: El valor del diccionario es un Array (No se pueden fusionar cardinalidades [0..*] y [1..*])
         if raw_type == "array":
-            wrapper_name = f"{parent_name}_{ref_name_part}" if ref_name_part else f"{parent_name}_MapEntry"
-            wrapper_feat = self._create_base_feature({}, wrapper_name, is_req=False)
+            wrapper_feat_name = f"{parent_name}_{wrapper_name}" 
+            wrapper_feat = self._create_base_feature({}, wrapper_feat_name, is_req=False)
             wrapper_feat["cardinality"] = "[0..*]"
             if pat: wrapper_feat["pattern"] = pat # Guardamos el regex
                 
             # Clave inyectada
-            key_feat = self._create_base_feature({}, f"{wrapper_name}_KeyValue", is_req=True)
+            key_feat = self._create_base_feature({}, f"{wrapper_feat_name}_KeyValue", is_req=True)
             key_feat["type"] = "String"
             wrapper_feat["children"].append(key_feat)
             
             # Valor (Array con [1..*])
-            arr_name = f"{wrapper_name}_Array"
+            arr_name = f"{wrapper_feat_name}_Array"
             arr_feat = self._create_base_feature(resolved_node, arr_name, is_req=True) 
             arr_feat["children"] = self.parse_node(resolved_node, arr_name, local_stack_refs, depth + 1)
             wrapper_feat["children"].append(arr_feat)
@@ -320,7 +330,7 @@ class MetaSchema_UVL_Parser:
             
         # CASO 2: El valor es un Objeto o Primitivo (FUSIÓN PERFECTA)
         else:
-            feat_name = f"{parent_name}_{ref_name_part}" if ref_name_part else f"{parent_name}_Value"
+            feat_name = f"{parent_name}_{wrapper_name}" 
             feat = self._create_base_feature(resolved_node, feat_name, is_req=False)
             feat["cardinality"] = "[0..*]" # Le asignamos que el objeto se puede instanciar de 0 a N veces
             if pat: feat["pattern"] = pat # Guardamos el regex
@@ -335,7 +345,6 @@ class MetaSchema_UVL_Parser:
             
             if "$ref" in val_node: local_stack_refs.pop()
             return feat
-
     def _create_base_feature(self, node, name, is_req):
         raw_type = node.get("type", "").lower()
         
